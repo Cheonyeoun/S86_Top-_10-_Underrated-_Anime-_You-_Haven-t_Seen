@@ -30,7 +30,7 @@ The External Resources I have used are Google for research to find much wider Qu
 
 
 
-**Why This Project?**
+**Why This Project?** 
 
 -    This is to help anime fans to not miss amazing stories and plots out there.
 
