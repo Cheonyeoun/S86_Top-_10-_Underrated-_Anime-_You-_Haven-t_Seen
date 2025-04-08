@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "name": "s86_top-_10-_underrated-_anime-_you-_haven-t_seen",
+  "version": "1.0.0",
+  "description": "**Project Title:**   Top 10 Underrated Anime You Haven't Seen",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cheonyeoun/S86_Top-_10-_Underrated-_Anime-_You-_Haven-t_Seen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cheonyeoun/S86_Top-_10-_Underrated-_Anime-_You-_Haven-t_Seen/issues"
+  },
+  "homepage": "https://github.com/Cheonyeoun/S86_Top-_10-_Underrated-_Anime-_You-_Haven-t_Seen#readme"
+}
