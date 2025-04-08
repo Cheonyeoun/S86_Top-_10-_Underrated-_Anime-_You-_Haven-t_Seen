@@ -24,7 +24,8 @@ A well-structured and visually appealing webpage to engage users.
 
 **Tech Stack :**
 
-I have Focused on Front-end part and used HTML, CSS, JavaScript
+I have Focused on Front-end part and used HTML, CSS and tailwindcss, Nodejs,
+React, MongoDB for database.
 
 The External Resources I have used are Google for research to find much wider Quality Data and Information.
 
