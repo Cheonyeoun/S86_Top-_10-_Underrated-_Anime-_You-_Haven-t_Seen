@@ -1,0 +1,31 @@
+meta {
+  name: CreateAnime
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:3000/anime
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Zankyou no Terror",
+    "synopsis": "Two mysterious teenagers cause chaos in Tokyo while hiding their tragic past.",
+    "genre": ["Psychological", "Thriller", "Drama"],
+    "rating": 8.0,
+    "episodes": 11,
+    "releaseYear": 2014,
+    "studio": "MAPPA",
+    "status": "Finished",
+    "imageUrl": "https://example.com/zankyou.jpg",
+    "recommendedBy": "Tester"
+  }
+  
+}
