@@ -17,10 +17,10 @@ mongoose
 })
 .catch((err)=> console.error("❌ Connection Failed",err))
 
-app.get('/',(req,res) =>{
-    return res.send("Hey There Welcome To The Server!")
-});
-
+app.get('/', (req, res) => {
+    const isConnected = mongoose.connection.readyState === 1;
+    res.send(`Database is ${isConnected ? 'Connected' : 'Not Connected'}`);
+  });
 app.get('/ping',(req,res) =>{
     return res.send("pong")
 });
