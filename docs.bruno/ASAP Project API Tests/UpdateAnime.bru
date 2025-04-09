@@ -1,0 +1,31 @@
+meta {
+  name: UpdateAnime
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3000/anime/67f6819f1b190ae1ba253f51
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Zankyou no Terror (Updated)",
+    "synopsis": "Updated: Chaos spreads in Tokyo as two teenagers execute a series of mysterious attacks.",
+    "genre": ["Thriller", "Drama"],
+    "rating": 8.3,
+    "episodes": 11,
+    "releaseYear": 2014,
+    "studio": "MAPPA",
+    "status": "Finished",
+    "imageUrl": "https://example.com/zankyou-updated.jpg",
+    "recommendedBy": "API Tester"
+  }
+  
+}

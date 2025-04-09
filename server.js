@@ -2,10 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
-
+const Anime = require('./models/Anime');
 const app = express();
 
 app.use(express.json());
+const animeRoutes = require('./routes/animeRoutes');
+app.use('/anime', animeRoutes);
 
 const PORT = 3000;
 
