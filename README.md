@@ -42,3 +42,6 @@ The External Resources I have used are Google for research to find much wider Qu
 
 ## Deployment Link
 Live Site: [https://s86-top-10-underrated-anime-you-haven-t.onrender.com](https://s86-top-10-underrated-anime-you-haven-t.onrender.com)
+## 🚀 Front-end Deployment
+Check out the deployed site here:  
+👉 [s86-top--10--underrated--anime--you--haven-t-seen.pages.dev](https://s86-top--10--underrated--anime--you--haven-t-seen.pages.dev/)
