@@ -21,9 +21,6 @@ const AnimeCard = ({data}) => {
               </div> 
 
         ))}
-
-
-
     </div>
 
   );
