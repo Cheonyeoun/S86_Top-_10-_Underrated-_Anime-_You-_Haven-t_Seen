@@ -3,6 +3,7 @@ import DummyCard from "./components/dummyData/dummyCard";
 import { useNavigate } from "react-router-dom";
 import {Routes,Route} from "react-router-dom";
 import Home from "./components/pages/Home";
+import InsertAnime from "./components/pages/InsertAnime";
 
 function Landing() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Landing/>}/>
       <Route path="/home" element={<Home/>}/>
+      <Route path="/addanime" element={<InsertAnime/>}/>
 
     </Routes>
 
