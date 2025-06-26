@@ -10,7 +10,7 @@ const Navbar = () => {
                   Underated 🐉
           </Link>
     <ul className="flex space-x-6 text-gray-700 font-semibold">       
-      <li><button onClick={() => navigate(-1)}>🔙</button></li>
+      <li><button onClick={() => window.history.back()}>🔙</button></li>
       <li><Link to="/home" className="hover:text-blue-500 transition duration-300">Home</Link></li>
       <li><Link to="/contact" className="hover:text-blue-500 transition duration-300">Contact</Link></li>
     </ul>
