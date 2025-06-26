@@ -15,7 +15,7 @@ function Home() {
             })
             .catch(err => console.error("Error fetching the data:", err));
     }, []); 
-
+ 
 return (
   <div className="min-h-screen bg-gray-100 px-4 py-8">
       <h1 className="text-3xl font-bold text-center text-black mb-6">
