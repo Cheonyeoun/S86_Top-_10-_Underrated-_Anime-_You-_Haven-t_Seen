@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {Routes,Route} from "react-router-dom";
 import Home from "./components/pages/Home";
 import InsertAnime from "./components/pages/InsertAnime";
+import UpdateAnime from "./components/pages/UpdateAnime";
 
 function Landing() {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ function App() {
       <Route path="/" element={<Landing/>}/>
       <Route path="/home" element={<Home/>}/>
       <Route path="/addanime" element={<InsertAnime/>}/>
+      <Route path="/editanime/:id" element={<UpdateAnime/>}/>
 
     </Routes>
 

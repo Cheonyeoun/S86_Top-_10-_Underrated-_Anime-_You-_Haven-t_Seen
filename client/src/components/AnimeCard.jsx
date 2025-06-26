@@ -1,6 +1,7 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 const AnimeCard = ({data}) => {
+    const navigate = useNavigate();
   return (
     <div className='flex flex-wrap justify-center select-none'>
 
@@ -22,12 +23,23 @@ const AnimeCard = ({data}) => {
               >  #{g}
             </span>
 ))}
-
-            </div>
-          </div> 
-
-        ))}
-
+      </div>
+          <div className="px-6 pb-4">
+            <button
+              onClick={() => navigate(`/editanime/${anime._id}`)}
+              className="text-sm text-white bg-blue-500 px-3 py-1 rounded hover:bg-blue-600 transition"
+            >
+              ✏️ Edit
+            </button>
+            <button
+              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm"
+              onClick={() => handleDelete(anime._id)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      ))}
 
 
     </div>

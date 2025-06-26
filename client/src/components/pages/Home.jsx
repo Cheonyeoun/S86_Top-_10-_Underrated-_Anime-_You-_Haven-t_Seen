@@ -7,15 +7,20 @@ function Home() {
     const [data, setData] = useState([]);
     const navigate = useNavigate();
 
+  useEffect(() => {
+    axios.get("http://localhost:3000/anime")
+      .then((res) => setData(res.data))
+      .catch((err) => console.error("Error fetching:", err));
+  }, []);
 
-    useEffect(() => {
-        axios.get('http://localhost:3000/anime')
-            .then(response => {
-                setData(response.data);
-            })
-            .catch(err => console.error("Error fetching the data:", err));
-    }, []); 
-
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/anime/${id}`);
+      setData((prev) => prev.filter((anime) => anime._id !== id));
+    } catch (err) {
+      console.error("Error deleting:", err);
+    }
+  };
 return (
         <div className="min-h-screen bg-gray-100 px-4 py-8">
             <h1 className="text-3xl font-bold text-center text-black mb-6">
@@ -30,7 +35,8 @@ return (
           ➕ Add Anime
         </button>
       </div>
-                <AnimeCard data={data}/>
+      <AnimeCard data={data} handleDelete={handleDelete} />
+
 
         </div>
     );
