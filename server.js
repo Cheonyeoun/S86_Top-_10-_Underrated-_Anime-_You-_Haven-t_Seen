@@ -4,16 +4,18 @@ const dotenv = require('dotenv');
 dotenv.config();
 const Anime = require('./models/Anime');
 const app = express();
-
+const cors = require('cors');
+app.use(cors())
 app.use(express.json());
 const animeRoutes = require('./routes/animeRoutes');
 app.use('/anime', animeRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://vigneshpandiyan08:vignesh@cluster0.g6ncse0.mongodb.net/animeDB"
 
 
 mongoose
-.connect(process.env.MONGO_URI)
+.connect(MONGO_URI)
 .then(()=>{
     console.log("✔️ mongoDB connection successful!")
 })
