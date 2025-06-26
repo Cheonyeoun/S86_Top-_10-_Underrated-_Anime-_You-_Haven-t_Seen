@@ -31,7 +31,7 @@ const InsertAnime = () => {
     } catch (err) {
       console.error(err);
       alert('Error adding anime.');
-    } 
+    }
   };
 
   return (
