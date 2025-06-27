@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useEffect } from 'react';
+
 
 const InsertAnime = () => {
   const [form, setForm] = useState({
@@ -14,6 +16,7 @@ const InsertAnime = () => {
     imageUrl: '',
     recommendedBy: ''
   });
+  const [users, setUsers] = useState([]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,6 +36,11 @@ const InsertAnime = () => {
       alert('Error adding anime.');
     }
   };
+  useEffect(() => {
+  axios.get('http://localhost:3000/users')
+    .then(res => setUsers(res.data))
+    .catch(err => console.error('Error fetching users:', err));
+}, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -120,15 +128,14 @@ const InsertAnime = () => {
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
         />
+        <select name="recommendedBy" value={form.recommendedBy} onChange={handleChange} required className="w-full border p-2 rounded">
+          <option value="">Select Recommender</option>
+          {users.map(user => (
+            <option key={user._id} value={user._id}>{user.name}</option>
+          ))}
 
-        <input
-          type="text"
-          name="recommendedBy"
-          placeholder="Recommended By"
-          onChange={handleChange}
-          className="w-full px-4 py-2 border rounded-md"
-        />
-
+        </select>
+        
         <button
           type="submit"
           className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-700 w-full"
@@ -141,3 +148,8 @@ const InsertAnime = () => {
 };
 
 export default InsertAnime;
+
+
+
+3/3
+

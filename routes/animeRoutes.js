@@ -16,12 +16,17 @@ router.post('/', async (req, res) => {
 // READ all
 router.get('/', async (req, res) => {
   try {
-    const animes = await Anime.find();
+    const filter = {};
+    if (req.query.user) {
+      filter.recommendedBy = req.query.user;
+    }
+    const animes = await Anime.find(filter).populate('recommendedBy', 'name');
     res.json(animes);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 // READ one
 router.get('/:id', async (req, res) => {
