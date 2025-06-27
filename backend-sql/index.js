@@ -6,6 +6,7 @@ const userRoutes = require('./routes/userRoutes');
 const animeRoutes = require('./routes/animeRoutes');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
+const jwt = require('jsonwebtoken')
 
 app.use(cors());
 app.use(express.json());

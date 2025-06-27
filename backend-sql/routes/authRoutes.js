@@ -1,31 +1,40 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken')
 
+const SECRET = '2006';
 // Login: sets username cookie
 router.post('/login', (req, res) => {
   const { username } = req.body;
-  if (!username) return res.status(400).json({ error: 'Username required' });
+  if (!username) return res.status(400).json({ error: 'Username is required' });
 
-  res.cookie('username', username, {
+  const token = jwt.sign({ username }, SECRET, { expiresIn: '1d' });
+
+  res.cookie('token', token, {
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    secure: false, // true if HTTPS
+    maxAge: 24 * 60 * 60 * 1000,
   });
+
   res.json({ message: `Logged in as ${username}` });
 });
 
 // Logout: clears cookie
 router.post('/logout', (req, res) => {
-  res.clearCookie('username');
+  res.clearCookie('token');
   res.json({ message: 'Logged out successfully' });
 });
 
-// Optional: check current user
+// Current user
 router.get('/me', (req, res) => {
-  const username = req.cookies.username;
-  if (username) {
-    res.json({ username });
-  } else {
-    res.status(401).json({ error: 'Not logged in' });
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ error: 'No token' });
+
+  try {
+    const data = jwt.verify(token, SECRET);
+    res.json({ username: data.username });
+  } catch (err) {
+    res.status(401).json({ error: 'Invalid token' });
   }
 });
 
