@@ -24,6 +24,12 @@ const AnimeCard = ({data}) => {
             </span>
 ))}
       </div>
+      <div className='text-center font-semibold text-2xl p-3 itallic'>
+        <p className="text-sm text-gray-600 italic">
+             Recommended by: {anime.recommendedBy?.name || "Anonymous"}
+        </p>
+
+      </div>
           <div className="px-6 pb-4">
             <button
               onClick={() => navigate(`/editanime/${anime._id}`)}

@@ -9,6 +9,9 @@ app.use(cors())
 app.use(express.json());
 const animeRoutes = require('./routes/animeRoutes');
 app.use('/anime', animeRoutes);
+const userRoutes = require('./routes/userRoutes');
+app.use('/users', userRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://vigneshpandiyan08:vignesh@cluster0.g6ncse0.mongodb.net/animeDB"

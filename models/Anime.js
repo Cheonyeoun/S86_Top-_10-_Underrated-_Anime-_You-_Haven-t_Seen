@@ -55,8 +55,9 @@ const animeSchema = new mongoose.Schema({
     }
   },
   recommendedBy: {
-    type: String,
-    default: 'Anonymous'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, { timestamps: true });
 
