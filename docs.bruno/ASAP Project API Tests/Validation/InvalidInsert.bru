@@ -1,0 +1,30 @@
+meta {
+  name: InvalidInsert
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/anime
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "synopsis": "Missing title and bad rating",
+    "genre": [],
+    "rating": 20,
+    "episodes": 0,
+    "releaseYear": 1700,
+    "studio": "",
+    "status": "Unknown",
+    "imageUrl": "notalink",
+    "recommendedBy": ""
+  }
+  
+}

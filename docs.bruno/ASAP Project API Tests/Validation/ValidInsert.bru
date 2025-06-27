@@ -1,0 +1,31 @@
+meta {
+  name: ValidInsert
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/anime
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "title": "Vivy: Fluorite Eye's Song",
+    "synopsis": "An AI songstress is tasked with saving the future.",
+    "genre": ["Sci-Fi", "Drama"],
+    "rating": 8.5,
+    "episodes": 13,
+    "releaseYear": 2021,
+    "studio": "Wit Studio",
+    "status": "Finished",
+    "imageUrl": "https://example.com/vivy.jpg",
+    "recommendedBy": "Arthur"
+  }
+  
+}
