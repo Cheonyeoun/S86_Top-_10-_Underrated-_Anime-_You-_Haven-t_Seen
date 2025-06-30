@@ -19,7 +19,7 @@ router.post('/logout', (req, res) => {
   res.json({ message: 'Logged out successfully' });
 });
 
-// Optional: check current user
+// Check current user
 router.get('/me', (req, res) => {
   const username = req.cookies.username;
   if (username) {

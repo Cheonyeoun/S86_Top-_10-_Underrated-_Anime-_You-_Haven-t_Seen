@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
-
 
 const InsertAnime = () => {
   const [form, setForm] = useState({
@@ -16,7 +14,14 @@ const InsertAnime = () => {
     imageUrl: '',
     recommendedBy: ''
   });
+
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/users')
+      .then(res => setUsers(res.data))
+      .catch(err => console.error('Error fetching users:', err));
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,23 +29,40 @@ const InsertAnime = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const payload = {
-      ...form,
-      genre: form.genre.split(',').map((g) => g.trim())
+      title: form.title,
+      synopsis: form.synopsis,
+      genre: form.genre.split(',').map((g) => g.trim()),
+      rating: form.rating,
+      episodes: form.episodes,
+      release_year: form.releaseYear,
+      studio: form.studio,
+      status: form.status,
+      image_url: form.imageUrl,
+      created_by: form.recommendedBy
     };
+
     try {
       await axios.post('http://localhost:3000/anime', payload);
       alert('Anime added successfully!');
+      setForm({
+        title: '',
+        synopsis: '',
+        genre: '',
+        rating: '',
+        episodes: '',
+        releaseYear: '',
+        studio: '',
+        status: 'Finished',
+        imageUrl: '',
+        recommendedBy: ''
+      });
     } catch (err) {
       console.error(err);
       alert('Error adding anime.');
     }
   };
-  useEffect(() => {
-  axios.get('http://localhost:3000/users')
-    .then(res => setUsers(res.data))
-    .catch(err => console.error('Error fetching users:', err));
-}, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -53,6 +75,7 @@ const InsertAnime = () => {
         <input
           type="text"
           name="title"
+          value={form.title}
           placeholder="Title"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -61,6 +84,7 @@ const InsertAnime = () => {
 
         <textarea
           name="synopsis"
+          value={form.synopsis}
           placeholder="Synopsis"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -70,6 +94,7 @@ const InsertAnime = () => {
         <input
           type="text"
           name="genre"
+          value={form.genre}
           placeholder="Genres (comma separated)"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -79,6 +104,7 @@ const InsertAnime = () => {
         <input
           type="number"
           name="rating"
+          value={form.rating}
           placeholder="Rating"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -88,6 +114,7 @@ const InsertAnime = () => {
         <input
           type="number"
           name="episodes"
+          value={form.episodes}
           placeholder="Episodes"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -97,6 +124,7 @@ const InsertAnime = () => {
         <input
           type="number"
           name="releaseYear"
+          value={form.releaseYear}
           placeholder="Release Year"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -106,6 +134,7 @@ const InsertAnime = () => {
         <input
           type="text"
           name="studio"
+          value={form.studio}
           placeholder="Studio"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
@@ -114,6 +143,7 @@ const InsertAnime = () => {
 
         <select
           name="status"
+          value={form.status}
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
         >
@@ -124,18 +154,25 @@ const InsertAnime = () => {
         <input
           type="url"
           name="imageUrl"
+          value={form.imageUrl}
           placeholder="Image URL"
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
         />
-        <select name="recommendedBy" value={form.recommendedBy} onChange={handleChange} required className="w-full border p-2 rounded">
+
+        <select
+          name="recommendedBy"
+          value={form.recommendedBy}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded"
+        >
           <option value="">Select Recommender</option>
           {users.map(user => (
-            <option key={user._id} value={user._id}>{user.name}</option>
+            <option key={user.id} value={user.id}>{user.name}</option>
           ))}
-
         </select>
-        
+
         <button
           type="submit"
           className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-700 w-full"
@@ -148,8 +185,4 @@ const InsertAnime = () => {
 };
 
 export default InsertAnime;
-
-
-
-3/3
 

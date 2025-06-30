@@ -23,14 +23,30 @@ router.post('/', async (req, res) => {
     release_year, studio, status, image_url, created_by
   } = req.body;
 
+  // 🔍 Debug: Show incoming data
+  console.log("Incoming POST /anime payload:", req.body);
+
   try {
     const [result] = await db.query(`
       INSERT INTO anime (title, synopsis, genre, rating, episodes, release_year, studio, status, image_url, created_by)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [title, synopsis, genre, rating, episodes, release_year, studio, status, image_url, created_by]
+      [
+        title,
+        synopsis,
+        Array.isArray(genre) ? genre.join(', ') : genre,
+        rating,
+        episodes,
+        release_year,
+        studio,
+        status,
+        image_url,
+        created_by
+      ]
     );
+
     res.status(201).json({ id: result.insertId, ...req.body });
   } catch (err) {
+    console.error("❌ DB Insert Error:", err.message);
     res.status(400).json({ error: err.message });
   }
 });
