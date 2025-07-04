@@ -14,7 +14,7 @@ const InsertAnime = () => {
     studio: '',
     status: 'Finished',
     imageUrl: '',
-    recommendedBy: ''
+    created_by: ''
   });
   const [users, setUsers] = useState([]);
 
@@ -128,13 +128,18 @@ const InsertAnime = () => {
           onChange={handleChange}
           className="w-full px-4 py-2 border rounded-md"
         />
-        <select name="recommendedBy" value={form.recommendedBy} onChange={handleChange} required className="w-full border p-2 rounded">
-          <option value="">Select Recommender</option>
-          {users.map(user => (
-            <option key={user.id} value={user.id}>{user.name}</option>
-          ))}
-
-        </select>
+<select
+  name="created_by"  // <-- fixed
+  value={form.created_by}
+  onChange={handleChange}
+  required
+  className="w-full border p-2 rounded"
+>
+  <option value="">Select Recommender</option>
+  {users.map(user => (
+    <option key={user.id} value={user.id}>{user.name}</option>
+  ))}
+</select>
         
         <button
           type="submit"
