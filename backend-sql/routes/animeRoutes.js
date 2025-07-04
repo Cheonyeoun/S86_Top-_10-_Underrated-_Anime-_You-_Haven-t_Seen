@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     const [result] = await db.query(`
       INSERT INTO anime (title, synopsis, genre, rating, episodes, release_year, studio, status, image_url, created_by)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [title, synopsis, genre, rating, episodes, release_year, studio, status, image_url, created_by]
+      [title, synopsis, JSON.stringify(genre), rating, episodes, release_year, studio, status, image_url, created_by]
     );
     res.status(201).json({ id: result.insertId, ...req.body });
   } catch (err) {

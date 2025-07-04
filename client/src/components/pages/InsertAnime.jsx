@@ -131,7 +131,7 @@ const InsertAnime = () => {
         <select name="recommendedBy" value={form.recommendedBy} onChange={handleChange} required className="w-full border p-2 rounded">
           <option value="">Select Recommender</option>
           {users.map(user => (
-            <option key={user._id} value={user._id}>{user.name}</option>
+            <option key={user.id} value={user.id}>{user.name}</option>
           ))}
 
         </select>
